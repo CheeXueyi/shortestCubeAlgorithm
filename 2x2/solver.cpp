@@ -432,10 +432,11 @@ string cubeShortestMove(string start, string end) {
     int currScrambles = 1;
     int numMoves = 0;
     bool algoFound = false;
-    while (numMoves < MAX_MOVES) {
-    
+    while (numMoves < MAX_MOVES && currScrambles > 0) {
         int nextScrambles = 0;
+        cout << currScrambles << " in queue\n";
         for (int i = 0; i < currScrambles; i++) {
+
             string currScramble = q.front();
             q.pop();
 
@@ -458,13 +459,14 @@ string cubeShortestMove(string start, string end) {
             if (algoFound) {
                 break;
             }
-            currScrambles = nextScrambles;
-            numMoves++;
+
         }
 
         if (algoFound) {
             break;
         }
+        currScrambles = nextScrambles;
+        numMoves++;
     }
     
     if (algoFound) {
